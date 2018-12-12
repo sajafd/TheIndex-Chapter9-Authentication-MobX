@@ -9,6 +9,10 @@ import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import BookList from "./BookList";
 
+// Forms
+
+import Login from "./forms/Login";
+
 // Store
 import authorStore from "./stores/AuthorStore";
 import bookStore from "./stores/BookStore";
@@ -32,6 +36,7 @@ class App extends Component {
   render() {
     return (
       <div id="app" className="container-fluid">
+        <Login />
         <div className="row">
           <div className="col-2">
             <Sidebar />
