@@ -8,10 +8,12 @@ import Loading from "./Loading";
 import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import BookList from "./BookList";
+import Logout from "./Logout";
 
 // Forms
 
 import Login from "./forms/Login";
+import Signup from "./forms/Signup";
 
 // Store
 import authorStore from "./stores/AuthorStore";
@@ -28,6 +30,9 @@ class App extends Component {
           <Route path="/authors/:authorID" component={AuthorDetail} />
           <Route path="/authors/" component={AuthorsList} />
           <Route path="/books/:bookColor?" component={BookList} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={Logout} />
         </Switch>
       );
     }
@@ -36,7 +41,6 @@ class App extends Component {
   render() {
     return (
       <div id="app" className="container-fluid">
-        <Login />
         <div className="row">
           <div className="col-2">
             <Sidebar />

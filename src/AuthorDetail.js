@@ -8,6 +8,7 @@ import AddBookModal from "./AddBookModal";
 // Stores
 import authorStore from "./stores/AuthorStore";
 import bookStore from "./stores/BookStore";
+import authStore from "./stores/authStore";
 
 class AuthorDetail extends Component {
   render() {
@@ -25,8 +26,16 @@ class AuthorDetail extends Component {
             alt={author.first_name + " " + author.last_name}
           />
         </div>
-        <BookTable books={books} />
-        <AddBookModal author={author} />
+        {authStore.user ? (
+          <div>
+            <BookTable books={books} />
+            <AddBookModal author={author} />
+          </div>
+        ) : (
+          <div>
+            <BookTable books={books} />
+          </div>
+        )}
       </div>
     );
   }
