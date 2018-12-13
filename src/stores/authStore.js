@@ -24,10 +24,10 @@ class AuthStore {
   setAuthToken(token) {
     if (token) {
       axios.defaults.headers.common.Authorization = `jwt ${token}`;
-      localStorage.setItem("tolkein", token);
+      localStorage.setItem("token", token);
     } else {
       delete axios.defaults.headers.common.Authorization;
-      localStorage.removeItem("tolkein");
+      localStorage.removeItem("token");
     }
   }
 
@@ -54,16 +54,16 @@ class AuthStore {
     this.user = user;
   }
 
-  checkForTolkein() {
-    const tolkein = localStorage.getItem("tolkein");
+  checkForToken() {
+    const token = localStorage.getItem("token");
 
-    if (tolkein) {
+    if (token) {
       const currentTime = Date.now() / 1000;
-      const user = jwt_decode(tolkein);
+      const user = jwt_decode(token);
 
       if (user.exp > currentTime) {
-        this.setCurrentUser(tolkein);
-        this.setAuthToken(tolkein);
+        this.setCurrentUser(token);
+        this.setAuthToken(token);
       } else {
         this.logoutUser();
       }
@@ -76,6 +76,6 @@ decorate(AuthStore, {
 });
 
 const authStore = new AuthStore();
-authStore.checkForTolkein();
+authStore.checkForToken();
 
 export default authStore;
